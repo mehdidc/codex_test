@@ -190,7 +190,7 @@ def create_dataloader(dataset: hf_datasets.Dataset, batch_size: int, shuffle: bo
         for start_idx in range(0, len(dataset), batch_size):
             batch_indices = indices[start_idx : start_idx + batch_size]
             batch = dataset.select(batch_indices)
-            yield {k: np.array(v) for k, v in batch.with_format("numpy").items()}
+            yield {k: np.array(v) for k, v in batch.with_format("numpy")[:].items()}
 
     return _generator()
 
